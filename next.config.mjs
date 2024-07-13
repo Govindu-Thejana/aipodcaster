@@ -14,7 +14,20 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'img.clerk.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'giddy-shrimp-940.convex.cloud'
+            },
+            {
+                protocol: 'https',
+                hostname: 'open-ai-text-to-speech1.p.rapidapi.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'dalle-3.p.rapidapi.com'
             }
+
         ]
     }
 };
