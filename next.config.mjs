@@ -26,6 +26,14 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'dalle-3.p.rapidapi.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'open-ai21.p.rapidapi.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'chatgpt-42.p.rapidapi.com'
             }
 
         ]
