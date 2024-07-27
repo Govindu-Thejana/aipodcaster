@@ -8,8 +8,13 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #00040e;
+  --accent-color: #0c99e4; /*11b780, 00BCD4*/
+}
+
 html {
-  background-color: #101114;
+  background-color: var(--primary-color);
 }
 
 @layer utilities {
@@ -120,13 +125,13 @@ html {
   filter: invert(1);
 }
 .cl-internal-b3fm6y {
-  background: #f97535;
+  background: #00BCD4;
 }
 .cl-formButtonPrimary {
-  background: #f97535;
+  background: #00BCD4;
 }
 .cl-footerActionLink {
-  color: #f97535;
+  color: #00BCD4;
 }
 .cl-headerSubtitle {
   color: #c5d0e6;
@@ -143,5 +148,5 @@ html {
   color: white;
 }
 .cl-internal-wkkub3 {
-  color: #f97535;
+  color: #00BCD4;
 }
