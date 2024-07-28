@@ -109,7 +109,7 @@ export interface PodcastCardProps {
     imgUrl: string;
     title: string;
     description: string;
-    podcastId: string;
+    podcastId: Id<"podcasts">;
 }
 
 export interface CarouselProps {
@@ -117,6 +117,7 @@ export interface CarouselProps {
 }
 
 export interface ProfileCardProps {
+    profileId:string;
     podcastData: ProfilePodcastProps;
     imageUrl: string;
     userFirstName: string;
