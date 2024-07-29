@@ -103,7 +103,7 @@ const CreatePodcast = () => {
     } catch (error) {
       console.log(error);
       toast({
-        title: "Please Wait...! ",
+        title: "Please Wait...!",
         variant: "destructive",
       });
       setIsSubmitting(false);
