@@ -20,7 +20,7 @@ export default function RootLayout({
             <div className="flex h-16 items-center justify-between md:hidden">
               <Image
                // src="/icons/logo.svg"
-                src="/icons/favicon.png"
+                src="/icons/microphone.png"
 
                 width={40}
                 height={40}
