@@ -11,6 +11,7 @@ import { ProfilePodcastProps } from "@/types";
 import { useClerk } from "@clerk/nextjs";
 
 const MyProfilePage = () => {
+
   const { user } = useClerk();
 
   const podcastsData = useQuery(api.podcasts.getPodcastByAuthorId, {

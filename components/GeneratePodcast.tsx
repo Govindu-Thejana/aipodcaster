@@ -59,9 +59,9 @@ const useGeneratePodcast = ({
       });
       
     } catch (error) {
-      console.log("Error generating podcast", error);
+      console.log("Error in generatePodcast", error);
       toast({
-        title: "Error creating a podcast",
+        title: "Error in generatePodcast",
         variant: "destructive",
       });
       setIsGenerating(false);
@@ -82,7 +82,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
           AI Prompt to generate Podcast
         </Label>
         <Textarea
-          className="input-class font-light focus-visible:ring-offset-orange-1"
+          className="input-class font-light focus-visible:ring-offset-[--accent-color]"
           placeholder="Provide text to generate audio"
           rows={5}
           value={props.voicePrompt}
@@ -92,7 +92,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
       <div className="mt-5 w-full max-w-[200px]">
         <Button
           type="submit"
-          className="text-16 bg-orange-1 py-4 font-bold text-white-1"
+          className="text-16 bg-[--accent-color] py-4 font-bold text-white-1"
           onClick={generatePodcast}
         >
           {isGenerating ? (

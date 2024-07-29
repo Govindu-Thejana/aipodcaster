@@ -8,18 +8,18 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "./ui/button";
-// import { useAudio } from '@/providers/AudioProvider';
+import { useAudio } from "@/providers/AudioProvider";
 
 const LeftSidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { signOut } = useClerk();
-  // const { audio } = useAudio();
+  const { audio } = useAudio();
 
   return (
     <section
       className={cn("left_sidebar h-[calc(100vh-5px)]", {
-        // 'h-[calc(100vh-140px)]': audio?.audioUrl
+        "h-[calc(100vh-140px)]": audio?.audioUrl,
       })}
     >
       <nav className="flex flex-col gap-6">
@@ -27,9 +27,9 @@ const LeftSidebar = () => {
           href="/"
           className="flex cursor-pointer items-center gap-1 pb-10 max-lg:justify-center"
         >
-          <Image src="/icons/logo.svg" alt="logo" width={23} height={27} />
+          <Image src="/icons/microphone.png" alt="logo" width={33} height={31} />
           <h1 className="text-24 font-extrabold text-white max-lg:hidden">
-            Podcastr
+            AiPodcastr
           </h1>
         </Link>
 
@@ -44,7 +44,7 @@ const LeftSidebar = () => {
               className={cn(
                 "flex gap-3 items-center py-4 max-lg:px-4 justify-center lg:justify-start",
                 {
-                  "bg-nav-focus border-r-4 border-orange-1": isActive,
+                  "bg-nav-focus border-r-4 border-[--accent-color]": isActive,
                 }
               )}
             >
@@ -56,7 +56,7 @@ const LeftSidebar = () => {
       </nav>
       <SignedOut>
         <div className="flex-center w-full pb-14 max-lg:px-4 lg:pr-8">
-          <Button asChild className="text-16 w-full bg-orange-1 font-extrabold">
+          <Button asChild className="text-16 w-full bg-[--accent-color] font-extrabold">
             <Link href="/sign-in">Sign in</Link>
           </Button>
         </div>
@@ -64,7 +64,7 @@ const LeftSidebar = () => {
       <SignedIn>
         <div className="flex-center w-full pb-14 max-lg:px-4 lg:pr-8">
           <Button
-            className="text-16 w-full bg-orange-1 font-extrabold"
+            className="text-16 w-full bg-[--accent-color] font-extrabold"
             onClick={() => signOut(() => router.push("/"))}
           >
             Log Out

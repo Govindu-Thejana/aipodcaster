@@ -121,7 +121,7 @@ const GenerateThumbnail = ({
               AI Prompt to generate Thumbnail
             </Label>
             <Textarea
-              className="input-class font-light focus-visible:ring-offset-orange-1"
+              className="input-class font-light focus-visible:ring-offset-[--accent-color]"
               placeholder="Provide text to generate thumbnail"
               rows={5}
               value={imagePrompt}
@@ -131,7 +131,7 @@ const GenerateThumbnail = ({
           <div className="w-full max-w-[200px]">
             <Button
               type="submit"
-              className="text-16 bg-orange-1 py-4 font-bold text-white-1"
+              className="text-16 bg-[--accent-color] py-4 font-bold text-white-1"
               onClick={generateImage}
             >
               {isImageLoading ? (
@@ -167,7 +167,7 @@ const GenerateThumbnail = ({
             </div>
           )}
           <div className="flex flex-col items-center gap-1">
-            <h2 className="text-12 font-bold text-orange-1">Click to upload</h2>
+            <h2 className="text-12 font-bold text-[--accent-color]">Click to upload</h2>
             <p className="text-12 font-normal text-gray-1">
               SVG, PNG, JPG, or GIF (max. 1080x1080px)
             </p>
