@@ -32,7 +32,7 @@ const MobileNav = () => {
             href="/"
             className="flex cursor-pointer items-center gap-1 pb-10 pl-4"
           >
-            <Image src="/icons/logo.svg" alt="logo" width={23} height={27} />
+            <Image src="/icons/microphone.png" alt="logo" width={30} height={31} />
             <h1 className="text-24 font-extrabold  text-white-1 ml-2">
               Podcastr
             </h1>
