@@ -77,9 +77,9 @@ const CreatePodcast = () => {
     try {
       setIsSubmitting(true);
       if (!audioUrl || !imageUrl || !voiceType) {
-        toast({
-          title: "Please generate audio and image",
-        });
+        // toast({
+        //   title: "Please generate audio and image",
+        // });
         setIsSubmitting(false);
         throw new Error("Please generate audio and image");
       }
@@ -103,7 +103,7 @@ const CreatePodcast = () => {
     } catch (error) {
       console.log(error);
       toast({
-        title: "Error",
+        title: "Please Wait...! ",
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -130,8 +130,8 @@ const CreatePodcast = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="input-class focus-visible:ring-offset-orange-1"
-                      placeholder="Ai Podcast Pro"
+                      className="input-class focus-visible:ring-offset-[--accent-color]"
+                      placeholder="AIPodcastr Pro"
                       {...field}
                     />
                   </FormControl>
@@ -148,7 +148,7 @@ const CreatePodcast = () => {
               <Select onValueChange={(value) => setVoiceType(value)}>
                 <SelectTrigger
                   className={cn(
-                    "text-16 w-full border-none bg-black-1 text-gray-1 focus-visible:ring-offset-orange-1"
+                    "text-16 w-full border-none bg-black-1 text-gray-1 focus-visible:ring-offset-[--accent-color]"
                   )}
                 >
                   <SelectValue
@@ -156,12 +156,12 @@ const CreatePodcast = () => {
                     className="placeholder:text-gray-1 "
                   />
                 </SelectTrigger>
-                <SelectContent className="text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1">
+                <SelectContent className="text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-[--accent-color]">
                   {voiceCategories.map((category) => (
                     <SelectItem
                       key={category}
                       value={category}
-                      className="capitalize focus:bg-orange-1"
+                      className="capitalize focus:bg-[--accent-color]"
                     >
                       {category}
                     </SelectItem>
@@ -187,7 +187,7 @@ const CreatePodcast = () => {
                   </FormLabel>
                   <FormControl>
                     <Textarea
-                      className="input-class focus-visible:ring-offset-orange-1"
+                      className="input-class focus-visible:ring-offset-[--accent-color]"
                       placeholder="Write a short podcast description"
                       {...field}
                     />
@@ -219,7 +219,7 @@ const CreatePodcast = () => {
             <div className="mt-10 w-full">
               <Button
                 type="submit"
-                className="text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1"
+                className="text-16 w-full bg-[--accent-color] py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1"
               >
                 {isSubmitting ? (
                   <>
