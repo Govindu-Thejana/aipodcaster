@@ -8,12 +8,16 @@ import {
 } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { signOut } = useClerk();
 
   return (
     <section>
@@ -33,7 +37,7 @@ const MobileNav = () => {
             className="flex cursor-pointer items-center gap-1 pb-10 pl-4"
           >
             <Image src="/icons/microphone.png" alt="logo" width={30} height={31} />
-            <h1 className="text-24 font-extrabold  text-white-1 ml-2">
+            <h1 className="text-24 font-extrabold text-white-1 ml-2">
               AIPodcastr
             </h1>
           </Link>
@@ -45,29 +49,51 @@ const MobileNav = () => {
                     pathname === route || pathname.startsWith(`${route}/`);
 
                   return (
-                    <SheetClose asChild key={route}>
-                      <Link
-                        href={route}
-                        className={cn(
-                          "flex gap-3 items-center py-4 max-lg:px-4 justify-start",
-                          {
-                            "bg-nav-focus border-r-4 border-[--accent-color]": isActive,
-                          }
-                        )}
-                      >
-                        <Image
-                          src={imgURL}
-                          alt={label}
-                          width={24}
-                          height={24}
-                        />
-                        <p>{label}</p>
-                      </Link>
-                    </SheetClose>
+                    <Link
+                      href={route}
+                      key={route}
+                      className={cn(
+                        "flex gap-3 items-center py-4 max-lg:px-4 justify-start",
+                        {
+                          "bg-nav-focus border-r-4 border-[--accent-color]": isActive,
+                        }
+                      )}
+                    >
+                      <Image
+                        src={imgURL}
+                        alt={label}
+                        width={24}
+                        height={24}
+                      />
+                      <p>{label}</p>
+                    </Link>
                   );
                 })}
               </nav>
             </SheetClose>
+
+            <div className="flex flex-col items-start p-4">
+              <SignedOut>
+                <div className="flex-center w-full pb-14 max-lg:px-4 lg:pr-8">
+                  <Button
+                    asChild
+                    className="text-16 w-full bg-[--accent-color] font-extrabold text-white-1"
+                  >
+                    <Link href="/sign-in">Sign in</Link>
+                  </Button>
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <div className="flex-center w-full pb-14 max-lg:px-4 lg:pr-8">
+                  <Button
+              className="text-16 bg-[--accent-color] font-extrabold text-white-1"
+              onClick={() => signOut(() => router.push("/"))}
+                  >
+                    Log Out
+                  </Button>
+                </div>
+              </SignedIn>
+            </div>
           </div>
         </SheetContent>
       </Sheet>
