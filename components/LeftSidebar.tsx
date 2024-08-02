@@ -27,8 +27,13 @@ const LeftSidebar = () => {
           href="/"
           className="flex cursor-pointer items-center gap-1 pb-10 max-lg:justify-center"
         >
-          <Image src="/icons/microphone.png" alt="logo" width={33} height={31} />
-          <h1 className="text-24 font-extrabold text-white max-lg:hidden">
+          <Image
+            src="/icons/microphone.png"
+            alt="logo"
+            width={33}
+            height={31}
+          />
+          <h1 className="text-24 font-extrabold text-white">
             AiPodcastr
           </h1>
         </Link>
@@ -56,7 +61,10 @@ const LeftSidebar = () => {
       </nav>
       <SignedOut>
         <div className="flex-center w-full pb-14 max-lg:px-4 lg:pr-8">
-          <Button asChild className="text-16 w-full bg-[--accent-color] font-extrabold">
+          <Button
+            asChild
+            className="text-16 w-full bg-[--accent-color] font-extrabold"
+          >
             <Link href="/sign-in">Sign in</Link>
           </Button>
         </div>
