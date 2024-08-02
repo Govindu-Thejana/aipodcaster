@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-      <img src="assets/banner.png" alt="Project Banner" style="border-radius:12px; max-width:100%;">
+      <img src="assets/home.png" alt="Project Banner" style="border-radius:12px; max-width:100%;">
   <br />
 
   <div>
@@ -15,7 +15,7 @@
 
   </div>
 
-  <h1 align="center">OnAir.ai Podcast Platform</h1>
+  <h1 align="center">AIPodcastr Platform</h1>
 
   ![GitHub deployments](https://img.shields.io/github/deployments/deepsingh132/aionair/production?label=build)
   [![Node.js CI](https://github.com/deepsingh132/aionair/actions/workflows/node.js.yml/badge.svg)](https://github.com/deepsingh132/aionair/actions/workflows/node.js.yml)
@@ -49,58 +49,35 @@ A cutting-edge AI SaaS platform that enables users to create, discover, and enjo
 - TypeScript
 - Convex
 - OpenAI
-- Stripe (for payments)
 - Clerk
 - ShadCN
 - Tailwind CSS
-- Zod (for validation)
 
 ## <a name="features">🔋 Features</a>
 
-👉 **Advanced Authentication**: Offers secure and dependable user login and registration functionalities.
+👉 **Robust Authentication**: Secure and reliable user login and registration system.
 
-👉 **Contemporary Home Page**: Highlights trending podcasts with a persistent player for uninterrupted listening.
+👉 **Modern Home Page**: Showcases trending podcasts with a sticky podcast player for continuous listening.
 
-👉 **Podcast Discovery Page**: A dedicated section for users to explore a wide range of new and popular podcasts.
+👉 **Discover Podcasts Page**: Dedicated page for users to explore new and popular podcasts.
 
-👉 **Comprehensive Search Functionality**: Empowers users to effortlessly find podcasts using various filters and criteria.
+👉 **Fully Functional Search**: Allows users to find podcasts easily using various search criteria.
 
-👉 **Podcast Creation Page**: Facilitates podcast creation with text-to-speech conversion, AI-generated images, and preview options.
+👉 **Create Podcast Page**: Enables podcast creation with text-to-audio conversion, AI image generation, and previews.
 
-👉 **Multi-Voice AI Capability**: Provides multiple AI-generated voice options for creating dynamic and engaging podcasts.
+👉 **Multi Voice AI Functionality**: Supports multiple AI-generated voices for dynamic podcast creation.
 
-👉 **User Profile Page**: Allows users to view and manage their created podcasts, including options to delete them.
+👉 **Profile Page**: View all created podcasts with options to delete them.
 
-👉 **Detailed Podcast Page**: Presents in-depth information about each podcast, including creator details, listener statistics, and transcripts.
+👉 **Podcast Details Page**: Displays detailed information about each podcast, including creator details, number of listeners, and transcript.
 
-👉 **Enhanced Podcast Player**: Includes features like rewind/fast forward controls and mute/unmute functionality for an optimal listening experience.
+👉 **Podcast Player**: Features backward/forward controls, as well as mute/unmute functionality for a seamless listening experience.
 
-👉 **Responsive Design**: Ensures the platform looks great and works seamlessly on all devices and screen sizes.
+👉 **Responsive Design**: Fully functional and visually appealing across all devices and screen sizes.
 
-and many more, including code architecture and reusability
+and many more, including code architecture and reusability 
 
-## <a name="screenshots">📸 Screenshots</a>
-
-| Homepage |
-| :-----------: |
-|  <img src="assets/screenshots/home.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
-| Discover Page |
-| <img src="assets/screenshots/discover.png" alt="Discover Page" style="border-radius:12px; max-width:100%;">   |
-| Create Podcast Page |
-| <img src="assets/screenshots/create.png" alt="Create Podcast Page" style="border-radius:12px; max-width:100%;"> |
-| Podcast Details Page |
-|  <img src="assets/screenshots/podcast.png" alt="Podcast Details Page" style="border-radius:12px; max-width:100%;"> |
-| Profile Page |
-|  <img src="assets/screenshots/profile.png" alt="Profile Page" style="border-radius:12px; max-width:100%;"> |
-| Plans Page |
-|  <img src="assets/screenshots/plans.png" alt="Plans Page" style="border-radius:12px; max-width:100%;"> |
-| Payment / Stripe Checkout Page |
-|  <img src="assets/screenshots/stripe.png" alt="Payment Page" style="border-radius:12px; max-width:100%;"> |
-| Usage Page |
-|  <img src="assets/screenshots/usage.png" alt="Usage Page" style="border-radius:12px; max-width:100%;"> |
-
-
-## <a name="getting-started">🤸 Getting Started</a>
+## <a name="quick-start">🤸 Quick Start</a>
 
 Follow these steps to set up the project locally on your machine.
 
@@ -115,8 +92,8 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone https://github.com/deepsingh132/aionair.git
-cd aionair
+git clone https://github.com/adrianhajdin/jsm_podcastr.git
+cd jsm_podcastr
 ```
 
 **Installation**
@@ -138,9 +115,6 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL='/sign-in'
 NEXT_PUBLIC_CLERK_SIGN_UP_URL='/sign-up'
-OPENAI_API_KEY=
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-STRIPE_SECRET_KEY=
 ```
 
 Replace the placeholder values with your actual Convex & Clerk credentials. You can obtain these credentials by signing up on the [Convex](https://www.convex.dev/) and [Clerk](https://clerk.com/) websites.
@@ -153,27 +127,184 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
-**Testing Stripe Payments**
+## <a name="snippets">🕸️ Snippets</a>
 
-To test the Stripe payments/subscriptions functionality, you can use the following test card details:
+<details>
+<summary><code>app/globals.css</code></summary>
 
-- **Card Number**: 4242 4242 4242 4242
-- **Expiry Date**: Any future date
-- **CVC/CVV**: Any 3-digit number
-- **Cardholder Name**: Any name
-- **Address**: Any address (e.g., 123 Main Street)
-- **ZIP Code**: Any 5-digit number
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-You can also use the [Stripe Test Cards](https://docs.stripe.com/testing#cards) for more test card details.
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #00040e;
+  --accent-color: #0c99e4;
+}
+
+html {
+  background-color: var(--primary-color);
+}
+
+@layer utilities {
+  .input-class {
+    @apply text-16 placeholder:text-16 bg-black-1 rounded-[6px] placeholder:text-gray-1 border-none text-gray-1;
+  }
+  .podcast_grid {
+    @apply grid grid-cols-2 gap-7 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 overflow-visible;
+  }
+  .podcast_item {
+  @apply transition-all transform duration-300 ease-in-out;
+  }
+  .podcast_item:hover {
+    @apply scale-105 shadow-lg bg-opacity-90;
+  }
+  .right_sidebar {
+    @apply sticky right-0 top-0 flex w-[310px] flex-col overflow-y-hidden border-none bg-black-1 px-[30px] pt-8 max-xl:hidden;
+  }
+  .left_sidebar {
+    @apply sticky left-0 top-0 flex w-fit flex-col  justify-between  border-none  bg-black-1 pt-8 text-white-1 max-md:hidden lg:w-[270px] lg:pl-8;
+  }
+  .generate_thumbnail {
+    @apply mt-[30px] flex w-full max-w-[520px] flex-col justify-between gap-2 rounded-lg border border-black-6 bg-black-1 px-2.5 py-2 md:flex-row md:gap-0;
+  }
+  .image_div {
+    @apply flex-center mt-5 h-[142px] w-full cursor-pointer flex-col gap-3 rounded-xl border-[3.2px] border-dashed border-black-6 bg-black-1;
+  }
+  .carousel_box {
+    @apply relative flex h-fit aspect-square w-full flex-none cursor-pointer flex-col justify-end rounded-xl border-none;
+  }
+  .button_bold-16 {
+    @apply text-[16px] font-bold text-white-1 transition-all duration-500;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .text-12 {
+    @apply text-[12px] leading-normal;
+  }
+  .text-14 {
+    @apply text-[14px] leading-normal;
+  }
+  .text-16 {
+    @apply text-[16px] leading-normal;
+  }
+  .text-18 {
+    @apply text-[18px] leading-normal;
+  }
+  .text-20 {
+    @apply text-[20px] leading-normal;
+  }
+  .text-24 {
+    @apply text-[24px] leading-normal;
+  }
+  .text-32 {
+    @apply text-[32px] leading-normal;
+  }
+}
+
+/* ===== custom classes ===== */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #15171c;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #222429;
+  border-radius: 50px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.glassmorphism-auth {
+  background: rgba(6, 3, 3, 0.711);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.glassmorphism-black {
+  background: rgba(18, 18, 18, 0.64);
+  backdrop-filter: blur(37px);
+  -webkit-backdrop-filter: blur(37px);
+}
+
+/* ======= clerk overrides ======== */
+.cl-socialButtonsIconButton {
+  border: 2px solid #222429;
+}
+.cl-button {
+  color: white;
+}
+.cl-socialButtonsProviderIcon__github {
+  filter: invert(1);
+}
+.cl-internal-b3fm6y {
+  background: #00BCD4;
+}
+.cl-formButtonPrimary {
+  background: #00BCD4;
+}
+.cl-footerActionLink {
+  color: #00BCD4;
+}
+.cl-headerSubtitle {
+  color: #c5d0e6;
+}
+.cl-logoImage {
+  width: 10rem;
+  height: 3rem;
+}
+.cl-internal-4a7e9l {
+  color: white;
+}
+
+.cl-userButtonPopoverActionButtonIcon {
+  color: white;
+}
+.cl-internal-wkkub3 {
+  color: #00BCD4;
+}
+```
+## <a name="screenshots">📸 Screenshots</a>
+
+| Homepage |
+| :-----------: |
+|  <img src="assets/screenshots/home.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
+| Discover Page |
+| <img src="assets/screenshots/discover.png" alt="Discover Page" style="border-radius:12px; max-width:100%;">   |
+| Create Podcast Page |
+| <img src="assets/screenshots/generate.png" alt="Create Podcast Page" style="border-radius:12px; max-width:100%;"> |
+| Podcast Details Page |
+|  <img src="assets/screenshots/podcast.png" alt="Podcast Details Page" style="border-radius:12px; max-width:100%;"> |
+| Profile Page |
+|  <img src="assets/screenshots/profile.png" alt="Profile Page" style="border-radius:12px; max-width:100%;"> |
 
 
-## <a name="license">📚 License</a>
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details.
-
-## <a name="contact">📞 Contact</a>
-
-If you have any queries or feedback, please feel free to reach out to me at my [email](mailto:mandeeparora132@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/deepsingh132/).
-
-<br />
-<br />
