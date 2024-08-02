@@ -20,7 +20,7 @@ const PodcastCard = ({
   };
 
   return (
-    <div className="cursor-pointer" onClick={handleViews}>
+    <div className="cursor-pointer podcast_item" onClick={handleViews}>
       <figure className="flex flex-col gap-2">
         <Image
           src={imgUrl}
