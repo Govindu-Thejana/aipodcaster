@@ -15,7 +15,7 @@
 
   </div>
 
-  <h1 align="center">AIPodcastr Platform</h1>
+  <h1 align="center">AI Podcast Platform</h1>
 
   ![GitHub deployments](https://img.shields.io/github/deployments/deepsingh132/aionair/production?label=build)
   [![Node.js CI](https://github.com/deepsingh132/aionair/actions/workflows/node.js.yml/badge.svg)](https://github.com/deepsingh132/aionair/actions/workflows/node.js.yml)
