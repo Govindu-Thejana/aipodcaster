@@ -34,9 +34,9 @@ const RightSidebar = () => {
               {user?.firstName} {user?.lastName}
             </h1>
             <Image
-              src="/icons/right-arrow.svg"
+              src="/icons/right-arrow.png"
               alt="arrow"
-              width={24}
+              width={20}
               height={24}
             />
           </div>
