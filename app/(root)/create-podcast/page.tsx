@@ -96,6 +96,7 @@ const CreatePodcast = () => {
         audioDuration,
         audioStorageId: audioStorageId!,
         imageStorageId: imageStorageId!,
+        creationTime:Date.now()
       });
       toast({ title: "Podcast created" });
       setIsSubmitting(false);
