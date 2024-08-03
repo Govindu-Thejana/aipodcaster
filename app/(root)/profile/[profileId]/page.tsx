@@ -46,6 +46,7 @@ const MyProfilePage = () => {
                   title={podcast.podcastTitle!}
                   description={podcast.podcastDescription}
                   podcastId={podcast._id}
+                  views={podcast.views}
                 />
               ))}
           </div>
