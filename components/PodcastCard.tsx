@@ -1,18 +1,33 @@
+import { api } from "@/convex/_generated/api";
 import { PodcastCardProps } from "@/types";
+import { useMutation } from "convex/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const PodcastCard = ({
   imgUrl,
   title,
   description,
   podcastId,
-}: PodcastCardProps) => {
-  const router = useRouter();
+  views,
 
-  const handleViews = () => {
-    // increase views
+}: PodcastCardProps) => {
+  const [viewCount, setViewCount] = useState(views);
+  const router = useRouter();
+  const updateViews = useMutation(api.podcasts.updatePodcastViews);
+
+  const handleViews = async () => {
+    const newViewCount = viewCount + 1;
+    setViewCount(newViewCount);
+
+    try {
+      await updateViews({ podcastId });
+      console.log("Views updated successfully");
+    } catch (error) {
+      console.error("Error updating views:", error);
+      setViewCount(viewCount); // Revert view count if update fails
+    }
 
     router.push(`/podcasts/${podcastId}`, {
       scroll: true,
@@ -34,6 +49,9 @@ const PodcastCard = ({
           <h2 className="text-12 truncate font-normal capitalize text-white-4">
             {description}
           </h2>
+          <h3 className="text-12 truncate font-extralight text-white-5">
+            {viewCount} views
+          </h3>
         </div>
       </figure>
     </div>
