@@ -16,6 +16,7 @@ export const createPodcast = mutation({
     voiceType: v.string(),
     views: v.number(),
     audioDuration: v.number(),
+    creationTime:v.number(),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -105,9 +106,24 @@ export const getTrendingPodcasts = query({
   handler: async (ctx) => {
     const podcast = await ctx.db.query("podcasts").collect();
 
-    return podcast.sort((a, b) => b.views - a.views).slice(0, 8);
+    return podcast.sort((a, b) => b.views - a.views).slice(0, 4);
   },
 });
+
+// this query will get the latest podcast based on _creationTime
+export const getLatestPodcasts = query({
+  handler: async (ctx) => {
+    // Fetch all podcasts
+    const podcasts = await ctx.db.query("podcasts").collect();
+    
+    // Sort podcasts by _creationTime in descending order
+    const sortedPodcasts = podcasts.sort((a, b) => b._creationTime - a._creationTime);
+    
+    // Return the latest podcast (first in the sorted list)
+    return sortedPodcasts.slice(0, 4);
+  },
+});
+
 
 // this query will get the podcast by the authorId.
 export const getPodcastByAuthorId = query({
