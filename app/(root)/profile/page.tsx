@@ -37,7 +37,7 @@ const MyProfilePage = () => {
         {podcastsData && podcastsData.podcasts.length > 0 ? (
           <div className="podcast_grid">
             {podcastsData?.podcasts
-              ?.slice(0, 4)
+              ?.slice(0, 20)
               .map((podcast) => (
                 <PodcastCard
                   key={podcast._id}
@@ -45,6 +45,7 @@ const MyProfilePage = () => {
                   title={podcast.podcastTitle!}
                   description={podcast.podcastDescription}
                   podcastId={podcast._id}
+                  views={podcast.views}
                 />
               ))}
           </div>
