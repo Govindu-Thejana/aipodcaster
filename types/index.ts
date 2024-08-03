@@ -71,11 +71,12 @@ export interface GenerateThumbnailProps {
 export interface LatestPodcastCardProps {
     imgUrl: string;
     title: string;
-    duration: string;
+    duration: number;
     index: number;
     audioUrl: string;
     author: string;
     views: number;
+    creationTime: number;
     podcastId: Id<"podcasts">;
 }
 
@@ -110,6 +111,7 @@ export interface PodcastCardProps {
     title: string;
     description: string;
     podcastId: Id<"podcasts">;
+    views: number;
 }
 
 export interface CarouselProps {
