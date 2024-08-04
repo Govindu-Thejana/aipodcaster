@@ -23,12 +23,16 @@ const PodcastDetailPlayer = ({
   isOwner,
   authorImageUrl,
   authorId,
+  views,
 }: PodcastDetailPlayerProps) => {
   const router = useRouter();
   const { setAudio } = useAudio();
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
+  const [viewCount, setViewCount] = useState(views);
+  const updateViews = useMutation(api.podcasts.updatePodcastViews);
+
 
   const handleDelete = async () => {
     try {
@@ -46,6 +50,19 @@ const PodcastDetailPlayer = ({
     }
   };
 
+  const handleViews = async () => {
+    const newViewCount = viewCount + 1;
+    setViewCount(newViewCount);
+
+    try {
+      await updateViews({ podcastId });
+      console.log("Views updated successfully");
+    } catch (error) {
+      console.error("Error updating views:", error);
+      setViewCount(viewCount); // Revert view count if update fails
+    }
+  };
+
   const handlePlay = () => {
     setAudio({
       title: podcastTitle,
@@ -54,6 +71,11 @@ const PodcastDetailPlayer = ({
       author,
       podcastId,
     });
+  };
+
+  const handleClick = () => {
+    handlePlay();
+    handleViews();
   };
 
   if (!imageUrl || !authorImageUrl) return <LoaderSpinner />;
@@ -91,7 +113,7 @@ const PodcastDetailPlayer = ({
           </article>
 
           <Button
-            onClick={handlePlay}
+            onClick={handleClick}
             className="text-16 w-full max-w-[250px] bg-[--accent-color] font-extrabold text-white-1"
           >
             <Image
