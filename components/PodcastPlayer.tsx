@@ -15,7 +15,7 @@ const PodcastPlayer = () => {
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const { audio } = useAudio();
+  const { audio,setAudio } = useAudio();
 
   const togglePlayPause = () => {
     if (audioRef.current?.paused) {
@@ -89,8 +89,17 @@ const PodcastPlayer = () => {
     }
   };
 
+  const handleCancel = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    setIsPlaying(false);
+    setAudio(undefined); // Reset the audio state to close the player
+  };
+
   const handleAudioEnded = () => {
     setIsPlaying(false);
+    setAudio(undefined); // Reset the audio state to close the player
   };
 
   return (
@@ -99,7 +108,6 @@ const PodcastPlayer = () => {
         hidden: !audio?.audioUrl || audio?.audioUrl === "",
       })}
     >
-      {/* change the color for indicator inside the Progress component in ui folder */}
       <Progress
         value={(currentTime / duration) * 100}
         className="w-full"
@@ -114,6 +122,14 @@ const PodcastPlayer = () => {
           onEnded={handleAudioEnded}
         />
         <div className="flex items-center gap-4 max-md:hidden">
+          <div className="absolute middle right-2 cursor-pointer" onClick={handleCancel}>
+          <Image
+            src="/icons/cancel.png"
+            width={24}
+            height={24}
+            alt="cancel"
+          />
+        </div>
           <Link href={`/podcast/${audio?.podcastId}`}>
             <Image
               src={audio?.imageUrl! || "/images/player1.png"}
