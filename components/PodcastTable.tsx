@@ -45,13 +45,13 @@ const PodcastTable = ({
               <div className="text-16 font-normal text-gray-500">{author}</div>
             </div>
           </div>
-          <div className="flex items-center space-x-20">
+          <div className="flex flex-col items-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-5 lg:space-x-10 2xl:space-x-20">
 
-            <div className="flex items-center space-x-4">
-              <Image src="/icons/headphone.svg" width={20} height={20} alt="clock" />
+            <div className="flex items-center space-x-1 sm:space-x-1 lg:space-x-2 2xl:space-x-4">
+              <Image src="/icons/headphone.svg" width={20} height={20} alt="headphone" />
               <span className="text-16 font-normal text-white-1">{views}</span>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-1 lg:space-x-2 2xl:space-x-4">
               <Image src="/icons/clock.jpg" className="rounded-full" width={20} height={20} alt="clock" />
               <span className="text-16 font-normal text-white-1">{formatDuration(duration)}</span>
             </div>
