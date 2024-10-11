@@ -3,7 +3,7 @@ import { useMutation } from "convex/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { TbEdit } from "react-icons/tb";
 import { api } from "@/convex/_generated/api";
 import { useAudio } from "@/providers/AudioProvider";
 import { PodcastDetailPlayerProps } from "@/types";
@@ -11,6 +11,24 @@ import { PodcastDetailPlayerProps } from "@/types";
 import LoaderSpinner from "./LoaderSpinner";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
+
+interface SimpleConfirmDialogProps {
+  onConfirm: () => void;
+  onCancel: () => void;
+}
+
+const SimpleConfirmDialog: React.FC<SimpleConfirmDialogProps> = ({ onConfirm, onCancel }) => (
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div className="bg-[--accent-color] p-6 rounded shadow-lg">
+      <p className="mb-4 py-5 text-white-1 font-bold text-lg">Are you sure you want to delete this podcast ?</p>
+      <div className="flex justify-end space-x-4">
+        <Button variant="secondary" className="bg-white-5 font-bold text-black-1 hover:bg-slate-50" onClick={onCancel}>Cancel</Button>
+        <Button variant="destructive" className=" text-white-1 hover:bg-black-1 bg-black-2 font-extrabold " onClick={onConfirm}>Confirm</Button>
+      </div>
+    </div>
+  </div>
+);
+
 
 const PodcastDetailPlayer = ({
   audioUrl,
@@ -32,34 +50,32 @@ const PodcastDetailPlayer = ({
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
   const [viewCount, setViewCount] = useState(views);
   const updateViews = useMutation(api.podcasts.updatePodcastViews);
-
+  const [showOptions, setShowOptions] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleDelete = async () => {
+    setIsDeleting(true);
     try {
       await deletePodcast({ podcastId, imageStorageId, audioStorageId });
-      toast({
-        title: "Podcast deleted",
-      });
+      toast({ title: "Podcast deleted successfully" });
       router.push("/");
     } catch (error) {
       console.error("Error deleting podcast", error);
-      toast({
-        title: "Error deleting podcast",
-        variant: "destructive",
-      });
+      toast({ title: "Error deleting podcast", variant: "destructive" });
+    } finally {
+      setIsDeleting(false);
+      setShowDialog(false);
+      setShowOptions(false);
     }
   };
 
   const handleViews = async () => {
-    const newViewCount = viewCount + 1;
-    setViewCount(newViewCount);
-
+    setViewCount((prev) => prev + 1);
     try {
       await updateViews({ podcastId });
-      console.log("Views updated successfully");
     } catch (error) {
       console.error("Error updating views:", error);
-      setViewCount(viewCount); // Revert view count if update fails
+      setViewCount((prev) => prev - 1);
     }
   };
 
@@ -71,11 +87,12 @@ const PodcastDetailPlayer = ({
       author,
       podcastId,
     });
+    handleViews();
   };
 
-  const handleClick = () => {
-    handlePlay();
-    handleViews();
+  const handleUpdate = () => {
+    setShowOptions(false); // Hide options after navigating
+    router.push(`/podcast-update/${podcastId}`);
   };
 
   if (!imageUrl || !authorImageUrl) return <LoaderSpinner />;
@@ -97,60 +114,76 @@ const PodcastDetailPlayer = ({
             </h1>
             <figure
               className="flex cursor-pointer items-center gap-2"
-              onClick={() => {
-                router.push(`/profile/${authorId}`);
-              }}
+              onClick={() => router.push(`/profile/${authorId}`)}
             >
               <Image
                 src={authorImageUrl}
                 width={30}
                 height={30}
                 alt="Caster icon"
-                className="size-[30px] rounded-full object-cover"
+                className="rounded-full object-cover"
               />
               <h2 className="text-16 font-normal text-white-3">{author}</h2>
             </figure>
           </article>
-
           <Button
-            onClick={handleClick}
-            className="text-16 w-full max-w-[250px] bg-[--accent-color] font-extrabold text-white-1"
+            onClick={handlePlay}
+            className="text-16 w-full max-w-[250px] font-extrabold text-white-1"
           >
             <Image
               src="/icons/Play.svg"
               width={20}
               height={20}
-              alt="random play"
-            />{" "}
+              alt="Play icon"
+            />
             &nbsp; Play podcast
           </Button>
+          <p className="text-sm text-white-3">Views: {viewCount}</p>
         </div>
       </div>
       {isOwner && (
         <div className="relative mt-2">
-          <Image
-            src="/icons/three-dots.svg"
-            width={20}
-            height={30}
-            alt="Three dots icon"
-            className="cursor-pointer"
-            onClick={() => setIsDeleting((prev) => !prev)}
-          />
-          {isDeleting && (
-            <div
-              className="absolute -left-32 -top-2 z-10 flex w-32 cursor-pointer justify-center gap-2 rounded-md bg-black-6 py-1.5 hover:bg-black-2"
-              onClick={handleDelete}
-            >
-              <Image
-                src="/icons/delete.svg"
-                width={16}
-                height={16}
-                alt="Delete icon"
-              />
-              <h2 className="text-16 font-normal text-white-1">Delete</h2>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowOptions((prev) => !prev)}
+            aria-label="Options"
+          >
+            <Image
+              src="/icons/three-dots.svg"
+              width={25}
+              height={20}
+              alt="Options icon"
+            />
+          </Button>
+          {showOptions && (
+            <div className="absolute -left-32 -top-2 z-10 flex w-32 flex-col gap-2 rounded-md bg-black-6 p-2">
+              <Button
+                variant="ghost"
+                className="flex items-center justify-start gap-2 text-white-1"
+                onClick={() => {
+                  setShowDialog(true);
+                  setShowOptions(false); // Hide options when delete is confirmed
+                }}
+              >
+                <Image
+                  src="/icons/delete.svg"
+                  width={20}
+                  height={20}
+                  alt="Delete icon"
+                />
+                Delete
+              </Button>
             </div>
           )}
+          {isDeleting && <LoaderSpinner />}
         </div>
+      )}
+      {showDialog && (
+        <SimpleConfirmDialog
+          onConfirm={handleDelete}
+          onCancel={() => setShowDialog(false)}
+        />
       )}
     </div>
   );
