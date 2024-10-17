@@ -3,7 +3,7 @@ import { Id } from "@/convex/_generated/dataModel";
 export const sidebarLinks = [
     {
         imgURL: "/icons/home.svg",
-        route: "/",
+        route: "/home",
         label: "Home",
     },
     {

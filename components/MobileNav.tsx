@@ -36,7 +36,7 @@ const MobileNav = () => {
             href="/"
             className="flex cursor-pointer items-center gap-1 pb-10 pl-4"
           >
-            <Image src="/icons/microphone.png" alt="logo" width={30} height={31} />
+            <Image src="/icons/microphone.png" alt="logo" width={30} height={30} />
             <h1 className="text-24 font-extrabold text-white-1 ml-2">
               AIPodcastr
             </h1>
@@ -86,8 +86,8 @@ const MobileNav = () => {
               <SignedIn>
                 <div className="flex-center w-full pb-14 max-lg:px-4 lg:pr-8">
                   <Button
-              className="text-16 bg-[--accent-color] font-extrabold text-white-1"
-              onClick={() => signOut(() => router.push("/"))}
+                    className="text-16 bg-[--accent-color] font-extrabold text-white-1"
+                    onClick={() => signOut(() => router.push("/"))}
                   >
                     Log Out
                   </Button>
