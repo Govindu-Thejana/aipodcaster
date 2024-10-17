@@ -16,7 +16,7 @@ export const createPodcast = mutation({
     voiceType: v.string(),
     views: v.number(),
     audioDuration: v.number(),
-    creationTime:v.number(),
+    creationTime: v.number(),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -115,10 +115,10 @@ export const getLatestPodcasts = query({
   handler: async (ctx) => {
     // Fetch all podcasts
     const podcasts = await ctx.db.query("podcasts").collect();
-    
+
     // Sort podcasts by _creationTime in descending order
     const sortedPodcasts = podcasts.sort((a, b) => b._creationTime - a._creationTime);
-    
+
     // Return the latest podcast (first in the sorted list)
     return sortedPodcasts.slice(0, 4);
   },
@@ -178,7 +178,7 @@ export const getPodcastBySearch = query({
     return await ctx.db
       .query("podcasts")
       .withSearchIndex("search_body", (q) =>
-        q.search("podcastDescription" || "podcastTitle", args.search)
+        q.search("podcastDescription" as any, args.search) || q.search("podcastTitle" as any, args.search)
       )
       .take(10);
   },
@@ -219,5 +219,37 @@ export const deletePodcast = mutation({
     await ctx.storage.delete(args.imageStorageId);
     await ctx.storage.delete(args.audioStorageId);
     return await ctx.db.delete(args.podcastId);
+  },
+});
+
+// Update podcast mutation
+export const updatePodcast = mutation({
+  args: {
+    podcastId: v.id("podcasts"),
+    podcastTitle: v.optional(v.string()), // Optional fields, only update if provided
+    podcastDescription: v.optional(v.string()),
+    imageUrl: v.optional(v.string()),
+    imageStorageId: v.optional(v.id("_storage")), // Optional, for updating image if needed
+  },
+  handler: async (ctx, args) => {
+    const podcast = await ctx.db.get(args.podcastId);
+
+    if (!podcast) {
+      throw new ConvexError("Podcast not found");
+    }
+
+    const updateFields: { [key: string]: any } = {};
+    if (args.podcastTitle) updateFields.podcastTitle = args.podcastTitle;
+    if (args.podcastDescription)
+      updateFields.podcastDescription = args.podcastDescription;
+    if (args.imageUrl) updateFields.imageUrl = args.imageUrl;
+    if (args.imageStorageId) updateFields.imageStorageId = args.imageStorageId;
+
+    if (Object.keys(updateFields).length === 0) {
+      throw new ConvexError("No fields to update");
+    }
+
+    // Patch the podcast with the provided fields
+    return await ctx.db.patch(args.podcastId, updateFields);
   },
 });
