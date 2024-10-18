@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-      <img src="assets/home.png" alt="Project Banner" style="border-radius:12px; max-width:100%;">
+      <img src="assets/screenshots/all.jpg" alt="Project Banner" style="border-radius:12px; max-width:100%;">
   <br />
 
   <div>
@@ -281,11 +281,15 @@ html {
   color: #00BCD4;
 }
 ```
+</details>
+
 ## <a name="screenshots">📸 Screenshots</a>
 
-| Homepage |
+| Landing Page |
 | :-----------: |
-|  <img src="assets/screenshots/home.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
+|  <img src="assets/screenshots/LandingPage.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
+| Home Page |
+|  <img src="assets/screenshots/HomePage.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
 | Discover Page |
 | <img src="assets/screenshots/discover.png" alt="Discover Page" style="border-radius:12px; max-width:100%;">   |
 | Create Podcast Page |
