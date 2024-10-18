@@ -37,7 +37,7 @@ const Footer = () => {
                     <div className="md:w-1/3">
                         <h4 className="text-scolor font-semibold mb-4">SUBSCRIBE</h4>
                         <p className="mb-4 text-gray-400 text-sm">
-                            Don't miss to subscribe to our news, kindly fill the form below.
+                            Don&apos;t miss to subscribe to our news, kindly fill the form below.
                         </p>
                         <form className="flex space-x-2">
                             <label htmlFor="email" className="sr-only">Email</label>
