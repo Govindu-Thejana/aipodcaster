@@ -35,6 +35,11 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'chatgpt-42.p.rapidapi.com'
             }
+            ,
+            {
+                protocol: 'https',
+                hostname: 'img.freepik.com'
+            }
 
         ]
     }
