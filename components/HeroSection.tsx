@@ -63,7 +63,7 @@ const Hero = () => {
                             className="text-gray-300 text-lg sm:text-xl leading-relaxed"
                         >
                             Discover the Future of Podcasting with our cutting-edge AI platform.
-                            Whether you're a newcomer or a seasoned pro, our innovative tools
+                            Whether you&apos;re a newcomer or a seasoned pro, our innovative tools
                             streamline your workflow and elevate your podcasting experience.
                         </motion.p>
                     </div>

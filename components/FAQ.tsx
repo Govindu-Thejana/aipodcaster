@@ -24,7 +24,7 @@ const PodcastCreationFAQ = () => {
                 <AccordionItem value="item-2">
                     <AccordionTrigger>Can I customize the AI-generated thumbnails?</AccordionTrigger>
                     <AccordionContent>
-                        Absolutely! While our AI creates eye-catching thumbnails automatically, you have full control to edit and customize them. You can adjust colors, add text, or incorporate your own images to make them perfectly match your podcast's style.
+                        Absolutely! While our AI creates eye-catching thumbnails automatically, you have full control to edit and customize them. You can adjust colors, add text, or incorporate your own images to make them perfectly match your podcast&apos;s style.
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
