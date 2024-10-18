@@ -286,6 +286,7 @@ html {
 ## <a name="screenshots">📸 Screenshots</a>
 
 | Landing Page |
+| :-----------: |
 |  <img src="assets/screenshots/LandingPage.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
 | Home Page |
 |  <img src="assets/screenshots/HomePage.png" alt="Home Page" style="border-radius:12px; max-width:100%;">  |
