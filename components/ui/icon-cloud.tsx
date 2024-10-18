@@ -9,6 +9,7 @@ import {
   renderSimpleIcon,
   SimpleIcon,
 } from "react-icon-cloud";
+import LoaderSpinner from "../LoaderSpinner";
 
 export const cloudProps: Omit<ICloud, "children"> = {
   containerProps: {
@@ -31,10 +32,9 @@ export const cloudProps: Omit<ICloud, "children"> = {
     initial: [0.1, -0.1],
     clickToFront: 500,
     tooltipDelay: 0,
-    outlineColour: "#0000",  // Transparent outline
+    outlineColour: "#0000", // Transparent outline
     maxSpeed: 0.04,
     minSpeed: 0.02,
-    // dragControl: false,
   },
 };
 
@@ -67,25 +67,37 @@ type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null);
   const { theme } = useTheme();
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch the icon data
   useEffect(() => {
-    fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
+    setIsLoading(true);
+    fetchSimpleIcons({ slugs: iconSlugs }).then((fetchedData) => {
+      setData(fetchedData);
+      setIsLoading(false);
+    });
   }, [iconSlugs]);
 
+  // Memoize the rendered icons
   const renderedIcons = useMemo(() => {
     if (!data) return null;
 
-    return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "light"),
-    );
+    return Object.values(data.simpleIcons).map((icon) => (
+      <div key={icon.slug}>{renderCustomIcon(icon, theme || "light")}</div>
+    ));
   }, [data, theme]);
 
+  // Conditional render without changing hook order
   return (
     <div className="flex justify-center items-center w-full">
-      {/* @ts-ignore */}
-      <Cloud {...cloudProps}>
-        <>{renderedIcons}</>
-      </Cloud>
+      {isLoading ? (
+        <LoaderSpinner />
+      ) : (
+        // @ts-ignore
+        <Cloud {...cloudProps}>
+          {renderedIcons}
+        </Cloud>
+      )}
     </div>
   );
 }

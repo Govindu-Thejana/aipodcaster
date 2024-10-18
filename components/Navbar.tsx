@@ -9,12 +9,16 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { signOut } = useClerk();
 
+    // Handle scroll events to toggle background color
+    const handleScroll = () => {
+        setIsScrolled(window.scrollY > 100);
+    };
+
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 100);
-        };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     const navLinks = [
@@ -25,20 +29,20 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-pcolor' : 'bg-acolor'}`}>
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-1000 ${isScrolled ? 'bg-pcolor' : 'bg-acolor'}`}>
             <div className="container mx-auto px-4 py-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2">
                         <Image
                             src="/icons/microphone.png"
-                            alt="AiPodcastr logo"
+                            alt="AIPodcastr logo"
                             width={33}
-                            height={31}
+                            height={33}
                             priority
                         />
                         <h1 className="text-xl sm:text-2xl text-white-1 font-extrabold">
-                            AiPodcastr
+                            AIPodcastr
                         </h1>
                     </Link>
 
@@ -110,14 +114,14 @@ const Navbar = () => {
                         <SignedOut>
                             <Button
                                 asChild
-                                className="w-full text-sm bg-[--accent-color] hover:bg-opacity-80 transition-colors duration-200"
+                                className="w-full text-white-1 text-sm bg-[--accent-color] hover:bg-opacity-80 transition-colors duration-200"
                             >
                                 <Link href="/sign-in">Sign in</Link>
                             </Button>
                         </SignedOut>
                         <SignedIn>
                             <Button
-                                className="w-full text-sm bg-[--accent-color] hover:bg-opacity-80 transition-colors duration-200"
+                                className="w-full text-white-1 text-sm bg-[--accent-color] hover:bg-opacity-80 transition-colors duration-200"
                                 onClick={() => signOut(() => {
                                     window.location.href = '/';
                                 })}

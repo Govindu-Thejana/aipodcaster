@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
+import Image from "next/image";
 
 const reviews = [
     {
@@ -76,7 +77,7 @@ const ReviewCard = ({
         >
             <div className="flex flex-col bor">
                 <div className="flex flex-row items-center gap-2">
-                    <img className="rounded-full" width="32" height="32" alt="" src={img} />
+                    <Image className="rounded-full" width="32" height="32" alt="" src={img} />
                     <div className="flex flex-col">
                         <figcaption className="text-sm font-medium dark:text-white">
                             {name}
@@ -93,7 +94,7 @@ export function MarqueeDemo() {
     return (
         <div className="relative text-white-1 flex h-[500px] w-full flex-col items-center justify-center overflow-hidden bg-background md:shadow-xl">
             <h2 className="font-sans italic text-lg text-white-1 mb-4">Our Customer Reviews</h2>
-            <h1 className="text-4xl font-serif text-gradient mb-5">What Our Clients Say</h1>
+            <h1 className="text-4xl font-sans text-gradient mb-5">What Our Clients Say</h1>
 
             <Marquee pauseOnHover className="[--duration:20s]">
                 {firstRow.map((review) => (

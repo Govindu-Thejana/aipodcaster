@@ -3,7 +3,6 @@ import { useMutation } from "convex/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { TbEdit } from "react-icons/tb";
 import { api } from "@/convex/_generated/api";
 import { useAudio } from "@/providers/AudioProvider";
 import { PodcastDetailPlayerProps } from "@/types";
@@ -160,7 +159,7 @@ const PodcastDetailPlayer = ({
             <div className="absolute -left-32 -top-2 z-10 flex w-32 flex-col gap-2 rounded-md bg-black-6 p-2">
               <Button
                 variant="ghost"
-                className="flex items-center justify-start gap-2 text-white-1"
+                className="flex items-center justify-start gap-2 text-scolor"
                 onClick={() => {
                   setShowDialog(true);
                   setShowOptions(false); // Hide options when delete is confirmed

@@ -31,10 +31,10 @@ const LeftSidebar = () => {
             src="/icons/microphone.png"
             alt="logo"
             width={33}
-            height={31}
+            height={33}
           />
           <h1 className="text-24 font-extrabold text-white">
-            AiPodcastr
+            AIPodcastr
           </h1>
         </Link>
 

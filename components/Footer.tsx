@@ -1,5 +1,6 @@
 import React from 'react';
 import { Twitter, Facebook, Instagram, Youtube, Linkedin, Github } from 'lucide-react';
+import Image from 'next/image';
 
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
                     {/* Left Section: Logo and Description */}
                     <div className="mb-8 md:mb-0">
                         <div className="flex flex-col justify-center items-center space-y-2">
-                            <img src="/icons/microphone.png" alt="Logo" className="h-12" />
+                            <Image src="/icons/microphone.png" alt="Logo" width={60} height={60} className="h-12 pt-2" />
                             <h3 className="text-2xl text-gradient text-white-1 font-bold">AIPodcastr</h3>
                         </div>
                         <div className="flex justify-center">
@@ -73,13 +74,17 @@ const Footer = () => {
 
                     {/* Privacy and Terms Links */}
                     <div className="space-x-4 mb-4">
-                        <a href="" className="text-gray-400 hover:text-white">Privacy Policy</a>
-                        <a href="" className="text-gray-400 hover:text-white">Terms of Use</a>
+                        <span className="text-gray-400 hover:text-white">Privacy Policy</span>
+                        <span className="text-gray-400 hover:text-white">Terms of Use</span>
                     </div>
                 </div>
 
+
                 <div className="text-center text-gray-400 text-sm">
-                    &copy; 2024 <span className="font-bold">AiPodcastr</span>. Created with 🤍 by <span className="font-bold">Govindu Thejana</span>. All Rights Reserved.
+                    &copy; 2024 <span className="font-bold">AIPodcastr</span>. Created with 🤍 by
+                    <a href="https://linkedin.com/in/govindu-thejana" target="_blank" rel="noopener noreferrer" className="font-bold text-scolor hover:underline">
+                        <span> Govindu Thejana</span>
+                    </a> . All Rights Reserved.
                 </div>
 
             </div>

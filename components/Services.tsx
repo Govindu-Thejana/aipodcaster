@@ -84,7 +84,7 @@ const Services = () => {
                     Our Services
                 </motion.h2>
                 <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 hover:bg-gradient"
                     variants={containerVariants}
                     initial="hidden"
                     animate={isVisible ? "visible" : "hidden"}
@@ -92,7 +92,7 @@ const Services = () => {
                     {services.map((service, index) => (
                         <motion.div
                             key={index}
-                            className="text-center aspect-ratio-1 p-6 pt-10 border border-acolor rounded-lg shadow-lg bg-white hover:shadow-2xl hover:scale-105 hover:bg-acolor hover:text-white transition-all duration-300"
+                            className="text-center aspect-ratio-1 p-6 pt-10 border border-acolor rounded-lg shadow-lg bg-white hover:shadow-2xl hover:scale-105 hover:bg-gradient-to-r hover:from-scolor transition-all duration-300"
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}

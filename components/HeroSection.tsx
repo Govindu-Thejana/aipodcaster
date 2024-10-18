@@ -3,55 +3,96 @@ import Navbar from "@/components/Navbar";
 import { GoArrowUpRight } from "react-icons/go";
 import HyperText from "@/components/ui/hyper-text";
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
-const Hero: React.FC = () => {
+const Hero = () => {
     const textGradient = 'bg-gradient-to-br from-teal-200 via-cyan-400 to-blue-600 text-transparent bg-clip-text';
 
     return (
-        <div className="relative min-h-screen bg-pcolor">
+        <div className="relative min-h-screen bg-pcolor overflow-hidden">
             <div className="fixed w-full z-20">
                 <Navbar />
             </div>
 
             <section
                 id="home"
-                className="relative flex flex-col lg:flex-row min-h-screen items-center justify-center bg-[url('https://i.imgur.com/YOUR_BACKGROUND_IMAGE.jpg')] bg-cover bg-center px-4 sm:px-6 lg:px-8 py-20 lg:py-0"
+                className="relative flex min-h-screen items-center justify-center bg-[url('/images/bg.jpeg')] bg-cover bg-center bg-fixed px-4 sm:px-6 lg:px-8 py-24 lg:py-0"
             >
-                <div className="absolute inset-0 bg-black opacity-50" />
+                {/* Enhanced overlay with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/50 backdrop-blur-[2px]" />
 
-                <div className="flex-1 z-10 max-w-3xl mx-auto lg:mx-0 space-y-8 text-center lg:text-left">
-                    <div className="text-6xl sm:text-5xl lg:text-8xl font-bold">
-                        <HyperText className={`${textGradient} font-serif font-medium`} text="AiPodcastr" />
+                {/* Decorative circle */}
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-teal-400/20 to-blue-600/20 rounded-full blur-3xl" />
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="relative z-10 max-w-5xl mx-auto text-center space-y-10 px-4 sm:px-6 lg:px-8"
+                >
+                    <motion.div
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0. }}
+                        className="relative inline-block"
+                    >
+                        <HyperText
+                            className={`${textGradient} font-serif font-medium text-7xl sm:text-8xl lg:text-9xl relative`}
+                            text="AIPodcastr"
+                        />
+                    </motion.div>
+
+                    <div className="space-y-8 max-w-3xl mx-auto">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="font-poppins font-medium text-3xl sm:text-4xl lg:text-5xl text-white-1 leading-tight"
+                        >
+                            The Next Generation
+                            <span className="relative block mt-2">
+                                <span className="absolute -inset-1 bg-gradient-to-r from-teal-200 to-blue-600 blur opacity-20" />
+                                <span className="relative">Podcast Platform</span>
+                            </span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4, duration: 0.8 }}
+                            className="text-gray-300 text-lg sm:text-xl leading-relaxed"
+                        >
+                            Discover the Future of Podcasting with our cutting-edge AI platform.
+                            Whether you're a newcomer or a seasoned pro, our innovative tools
+                            streamline your workflow and elevate your podcasting experience.
+                        </motion.p>
                     </div>
 
-                    <div className="space-y-4">
-                        <h1 className="font-poppins font-medium text-3xl sm:text-4xl lg:text-5xl text-white-1 leading-tight">
-                            The Next Generation<br className="hidden sm:inline" />Podcast Platform
-                        </h1>
-                        <p className="text-gray-300 max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg">
-                            Discover the Future of Podcasting With our cutting-edge AI platform,<br className="hidden sm:inline" /> whether you're a newcomer or a seasoned pro, our innovative tools streamline your workflow and elevate your podcasting experience.
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <span className={`${textGradient} text-lg font-semibold`}>Get Started For Free</span>
-                        <Link href="/home" className="inline-block">
-                            <button className="bg-scolor hover:bg-light text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center space-x-2">
-                                Try AiPodcastr
-                                <GoArrowUpRight className="text-xl ml-1" />
-                            </button>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6, duration: 0.8 }}
+                        className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8"
+                    >
+                        <span className={`${textGradient} text-xl font-semibold hover:scale-105 transition-transform group`}>
+                            Get Started For Free
+                            <span className="block h-0.5 bg-gradient-to-r from-teal-200 to-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                        </span>
+                        <Link href="/home" className="inline-block w-full sm:w-auto">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="relative w-full sm:w-auto bg-scolor text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group overflow-hidden"
+                            >
+                                <span className="absolute inset-0 bg-gradient-to-r from-teal-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <span className="relative flex items-center text-white-1">
+                                    Try AIPodcastr
+                                    <GoArrowUpRight className="text-2xl ml-2 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                                </span>
+                            </motion.button>
                         </Link>
-                    </div>
-                </div>
-
-                <div className="flex-1 mt-12 lg:mt-0 max-w-2xl mx-auto lg:mx-0">
-                    <img
-                        className="w-full h-auto object-contain rounded-lg shadow-2xl"
-                        src="https://i.imgur.com/8RJDGMU.png"
-                        alt="Podcast illustration"
-                    />
-
-                </div>
+                    </motion.div>
+                </motion.div>
             </section>
         </div>
     );

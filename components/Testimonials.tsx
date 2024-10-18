@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
+import Image from 'next/image';
 
 const reviews = [
     {
         id: 1,
-        text: "AiPodcastr is an exceptional platform for anyone interested in artificial intelligence. The podcast episodes cover a wide range of podcasts, from AI theory to real-world applications, with expert guests sharing invaluable insights...",
+        text: "AIPodcastr is an exceptional platform for anyone interested in artificial intelligence. The podcast episodes cover a wide range of podcasts, from AI theory to real-world applications, with expert guests sharing invaluable insights...",
         author: "Founder of AIPodcastr",
         rating: 5,
         image: "https://avatars.githubusercontent.com/u/149306686?v=4"
@@ -68,7 +69,7 @@ const Testimonials = () => {
                                 </div>
                                 <p className="text-gray-300 text-2xl mb-6">{review.text}</p>
                                 <div className="flex items-center justify-center">
-                                    <img
+                                    <Image
                                         src={review.image}
                                         alt={review.author}
                                         className="w-12 h-12 rounded-full mr-3"
