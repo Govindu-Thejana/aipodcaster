@@ -11,7 +11,7 @@ const Footer = () => {
                     {/* Left Section: Logo and Description */}
                     <div className="mb-8 md:mb-0">
                         <div className="flex flex-col justify-center items-center space-y-2">
-                            <Image src="/icons/microphone.png" alt="Logo" width={60} height={60} className="h-12 pt-2" />
+                            <Image src="/icons/microphone.png" alt="Logo" layout="intrinsic" width={60} height={60} className="h-12 pt-2" />
                             <h3 className="text-2xl text-gradient text-white-1 font-bold">AIPodcastr</h3>
                         </div>
                         <div className="flex justify-center">
@@ -60,14 +60,14 @@ const Footer = () => {
                 <div className="flex flex-col items-center justify-center mt-8">
                     {/* Social Media Icons */}
                     <div className="flex space-x-4 mb-4">
-                        <a href="https://linkedin.com/in/govindu-thejana" className="text-gray-400 hover:text-white-1" aria-label="LinkedIn">
+                        <a href="https://linkedin.com/in/govindu-thejana" className="text-scolor hover:text-white-1" aria-label="LinkedIn">
                             <Linkedin size={24} />
                         </a>
                         <Twitter size={24} className="text-gray-400 hover:text-white" aria-label="Twitter" />
                         <Facebook size={24} className="text-gray-400 hover:text-white" aria-label="Twitter" />
                         <Instagram size={24} className="text-gray-400 hover:text-white" aria-label="Twitter" />
                         <Youtube size={24} className="text-gray-400 hover:text-white-" aria-label="Twitter" />
-                        <a href="https://github.com/Govindu-Thejana/aipodcaster" className="text-gray-400 hover:text-white-1" aria-label="LinkedIn">
+                        <a href="https://github.com/Govindu-Thejana/aipodcaster" className="text-scolor hover:text-white-1" aria-label="LinkedIn">
                             <Github size={24} />
                         </a>
                     </div>
